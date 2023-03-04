@@ -119,3 +119,5 @@ function removeCharacters() {
   inputValue.slice(0, inputValue.length - 1);
   // refreshInputScreen();
 }
+
+console.log('Hello World');
