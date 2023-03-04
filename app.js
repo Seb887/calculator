@@ -16,7 +16,7 @@ let secondNum = '';
 let currentOperator;
 let operatorIsSet = false;
 
-// console.log('resultTest:', result);
+console.log('resultTest:', result);
 
 // Events
 equals.onclick = () => operate(firstNum, currentOperator, secondNum);
