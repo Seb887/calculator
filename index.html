@@ -15,13 +15,18 @@
       <div
         class="calc-container w-72 h-auto p-5 rounded-xl bg-[#202124] text-white"
       >
+        <!-- Display -->
         <div
-          class="screen bg-slate-500 rounded-lg text-black text-end p-1 pr-2 mb-5"
+          class="screen bg-slate-500 rounded-lg text-black text-end p-1 pr-2 mb-5 shadow-inner"
         >
-          <div id="inputArea ">1 + 3 x 5</div>
-          <div class="text-white font-bold text-xl" id="resultArea">99</div>
+          <div
+            class="text-white text-xl h-10 tracking-widest"
+            id="inputArea"
+          ></div>
+          <div class="text-white font-bold text-3xl h-10" id="resultArea"></div>
         </div>
 
+        <!-- Numpad -->
         <div class="buttons-grid grid grid-cols-4 gap-1 h-64">
           <button
             class="allClear col-span-2 h-auto bg-gray-500 hover:bg-gray-400 rounded"
@@ -58,7 +63,7 @@
             class="operators h-auto bg-gray-600 hover:bg-gray-500 rounded"
             id="divide"
           >
-            /
+            ÷
           </button>
 
           <button
@@ -83,7 +88,7 @@
             class="operators h-auto bg-gray-600 hover:bg-gray-500 rounded"
             id="multiply"
           >
-            x
+            ×
           </button>
 
           <button

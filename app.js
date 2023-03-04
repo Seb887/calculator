@@ -1,36 +1,121 @@
 'use strict';
 
+const numbers = document.querySelectorAll('.digits');
 const operators = document.querySelectorAll('.operators');
 const decimals = document.querySelector('.decimals');
 const equals = document.querySelector('.equals');
 const allClear = document.querySelector('.allClear');
 const clear = document.querySelector('.clear');
-const displayInput = document.getElementById('inputArea');
-const displayResult = document.getElementById('resultArea');
+const displayInput = document.querySelector('#inputArea');
+const displayResult = document.querySelector('#resultArea');
 
-let result = 0;
+// Variables
+let result = undefined;
+let firstNum = '';
+let secondNum = '';
+let currentOperator;
+let operatorIsSet = false;
 
-function refreshDisplay() {
-  displayResult.textContent = result;
-}
+// console.log('resultTest:', result);
 
-function operate(operator, num1, num2) {
+// Events
+equals.onclick = () => operate(firstNum, currentOperator, secondNum);
+allClear.onclick = () => resetCalc();
+clear.onclick = () => removeCharacters();
+
+numbers.forEach((e) =>
+  e.addEventListener('click', () => getNumber(e.innerText))
+);
+
+operators.forEach((e) =>
+  e.addEventListener('click', () => setOperator(e.innerText))
+);
+
+// Functions
+function operate(num1, operator, num2) {
+  if (operator === '×') {
+    operator = '*';
+  }
+  if (operator === '÷') {
+    operator = '/';
+  }
+
   switch (operator) {
-    case 'add':
+    case '+':
       result = num1 + num2;
+      console.log('result: ', result);
       break;
-    case 'subtract':
+    case '-':
       result = num1 - num2;
+      console.log('result: ', result);
       break;
-    case 'multiply':
+    case '*':
       result = num1 * num2;
+      console.log('result: ', result);
       break;
-    case 'divide':
+    case '/':
       result = num1 / num2;
+      console.log('result: ', result);
       break;
   }
 
-  refreshDisplay();
+  refreshResult();
 }
 
-operate('multiply', 5, 4);
+function getNumber(num) {
+  if (operatorIsSet === true) {
+    secondNum += num;
+    secondNum = parseFloat(secondNum);
+    console.log('secondNum:', secondNum);
+  } else {
+    firstNum += num;
+    firstNum = parseFloat(firstNum);
+    console.log('firstNum:', firstNum);
+  }
+  refreshInputScreen();
+}
+
+function setOperator(operator) {
+  if (result === undefined) {
+    currentOperator = operator;
+    operatorIsSet = true;
+    console.log('operator:', currentOperator);
+    refreshInputScreen();
+  } else {
+    currentOperator = operator;
+    firstNum = result;
+    secondNum = '';
+    refreshInputScreen();
+  }
+}
+
+function refreshInputScreen() {
+  displayInput.textContent = firstNum;
+  console.log('after firstNum:', displayInput.textContent);
+  if (operatorIsSet === true) {
+    displayInput.textContent += currentOperator;
+    displayInput.textContent += secondNum;
+    console.log('after secondNum:', displayInput.textContent);
+  }
+}
+
+function refreshResult() {
+  displayResult.textContent = result;
+}
+
+function resetCalc() {
+  result = undefined;
+  firstNum = '';
+  secondNum = '';
+  currentOperator;
+  operatorIsSet = false;
+
+  refreshInputScreen();
+  refreshResult();
+}
+
+function removeCharacters() {
+  let inputValue = displayInput.textContent;
+  inputValue.slice(0, inputValue.length - 1);
+  // refreshInputScreen();
+}
