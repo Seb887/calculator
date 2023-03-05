@@ -13,17 +13,20 @@
       class="flex justify-center items-center text-center bg-slate-700 h-screen"
     >
       <div
-        class="calc-container w-72 h-auto p-5 rounded-xl bg-[#202124] text-white"
+        class="calc-container z-10 w-72 h-auto p-5 rounded-xl bg-[#202124] text-white"
       >
         <!-- Display -->
         <div
           class="screen bg-slate-500 rounded-lg text-black text-end p-1 pr-2 mb-5 shadow-inner"
         >
           <div
-            class="text-white text-xl h-10 tracking-widest"
+            class="text-white text-xl h-10 tracking-widest overflow-hidden"
             id="inputArea"
           ></div>
-          <div class="text-white font-bold text-3xl h-10" id="resultArea"></div>
+          <div
+            class="text-white font-bold text-3xl h-10 overflow-hidden"
+            id="resultArea"
+          ></div>
         </div>
 
         <!-- Numpad -->

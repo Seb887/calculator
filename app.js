@@ -1,5 +1,6 @@
 'use strict';
 
+// DOM Elements
 const numbers = document.querySelectorAll('.digits');
 const operators = document.querySelectorAll('.operators');
 const decimals = document.querySelector('.decimals');
@@ -16,15 +17,14 @@ let secondNum = '';
 let currentOperator;
 let operatorIsSet = false;
 
-console.log('resultTest:', result);
-
 // Events
+decimals.onclick = () => setPoint();
 equals.onclick = () => operate(firstNum, currentOperator, secondNum);
 allClear.onclick = () => resetCalc();
 clear.onclick = () => removeCharacters();
 
 numbers.forEach((e) =>
-  e.addEventListener('click', () => getNumber(e.innerText))
+  e.addEventListener('click', () => getNumbers(e.innerText))
 );
 
 operators.forEach((e) =>
@@ -51,6 +51,7 @@ function operate(num1, operator, num2) {
       break;
     case '*':
       result = num1 * num2;
+
       console.log('result: ', result);
       break;
     case '/':
@@ -59,10 +60,14 @@ function operate(num1, operator, num2) {
       break;
   }
 
+  // result = result.replace('.', ',');
+
+  // result = result.toFixed(9); // Einstellung Nachkommastellen
+
   refreshResult();
 }
 
-function getNumber(num) {
+function getNumbers(num) {
   if (operatorIsSet === true) {
     secondNum += num;
     secondNum = parseFloat(secondNum);
@@ -87,6 +92,15 @@ function setOperator(operator) {
     secondNum = '';
     refreshInputScreen();
   }
+}
+
+function setPoint() {
+  if (operatorIsSet === true) {
+    secondNum += '.';
+  } else {
+    firstNum += '.';
+  }
+  refreshInputScreen();
 }
 
 function refreshInputScreen() {
@@ -120,4 +134,4 @@ function removeCharacters() {
   // refreshInputScreen();
 }
 
-console.log('Hello World');
+// console.log('Hello World');
